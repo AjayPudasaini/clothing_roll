@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-xxl-3 col-12">
+                <h6>Filters</h6><br>
+                <div class="price">
+                    <p>Price</p>
+                    <hr>
+                    <li><p>Rs:0-200</p></li>
+                    <li><p>Rs:200-500</p></li>
+                    <li><p>Rs:500-1000</p></li>
+                    <li><p>Rs:1000-1500</p></li>
+                    <li><p>Rs:1500-2000+</p></li>
+                </div>
+                <hr>
+                <div class="Size">
+                    <p>Size</p>
+                    <hr>
+                    <li><p>S(2)</p></li>
+                    <li><p>M(3)</p></li>
+                    <li><p>L(20)</p></li>
+                    <li><p>2XL(9)</p></li>
+                    <li><p>3XL(2)</p></li>
+                </div>
+                <hr>
+                <div class="category">
+                    <p>Category</p>
+                    <hr>
+                    
+                    {% for categories in categories %}
+                        <li><p>{{ categories.name }}</p></li>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-xxl-9 col-12">
+                <h6>Products</h6>
+
+
+                <div class="product_section">
+                    <div class="container-fluid p-0">
+                        <div class="row">
+                            
+                            {% for product in product %}
+                                <div class="col-lg-3 col-xxl-3 col-md-3 col-12">
+                                    <div class="product-card border border-success">
+                                        <div class="product-tumb">
+                                          <img src="{{ product.ProductImageUrl }}" alt="" class="img-fluid" />
+                                        </div>
+                                        <div class="product-details w-100">
+                                          <h4>
+                                            <a href=" {% url 'product_detail' product.slug %} "
+                                              >{{ product.product_name }}</a
+                                            >
+                                          </h4>
+                                          <div class="product-price">
+                                            <small>RS: {{ product.display_price }}</small>Rs: {{ product.actual_price }}
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                            {% endfor %}
+                                
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    
